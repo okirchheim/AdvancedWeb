@@ -96,12 +96,40 @@ function displayContent(data)
             dom.removeChild(dom.firstChild);
         }   
         
-    docfrag.appendChild( createParagraphElement('id', data._id) );
-    docfrag.appendChild( createParagraphElement('name', data.users.name.first) );
+    docfrag.appendChild( createParagraphElement('Name', ' ' + data.name.first + ' ' + data.name.last) );
+    docfrag.appendChild( createParagraphElement('Company', ' ' + data.company) );
+    docfrag.appendChild( createParagraphElement('Email', ' ' + data.email) );
+    docfrag.appendChild( createParagraphElement('Phone', ' ' + data.phone) );
+    docfrag.appendChild( createParagraphElement('Address', ' ' + data.address) );
+    docfrag.appendChild( createParagraphElement('Registered', ' ' + data.registered) );
+    docfrag.appendChild( createParagraphElement('Age', ' ' + data.age) );
+    docfrag.appendChild( createParagraphElement('EyeColor', ' ' + data.eyeColor) );
+    docfrag.appendChild( createParagraphElement('Greeting', ' ' + data.greeting) );
+    docfrag.appendChild( createParagraphElement('FavoriteFruit', ' ' + data.favoriteFruit) );
+    docfrag.appendChild( createParagraphElement('Balance', ' ' + data.balance) );
+    docfrag.appendChild( createParagraphElement('About', ' ' + data.about) );
     
-    var completed = createParagraphElement('Completed: ', users.completed);
+    
+    var completed = createParagraphElement('Completed: ', data.completed);
     completed.setAttribute('class', 'link');
-    completed.addEventListener('click', function(){ users.completed = !users.completed;displayContent(users);});
+    completed.addEventListener('click', function(){ data.completed = !data.completed;displayContent(data);});
     docfrag.appendChild( completed );
     dom.appendChild(docfrag);
+     
+    
+    function createParagraphElement(label, text) {
+                var pTag = document.createElement('p'),
+                    strongTag = document.createElement('strong'),
+                    strongText = document.createTextNode(label),
+                    pText = document.createTextNode(text);
+          
+                    strongTag.appendChild(strongText);
+                    pTag.appendChild(strongTag);  
+                    pTag.appendChild(pText);  
+                    return pTag;
+            }
+            
+             
+             
+            window.addEventListener('load', displayList.bind(null, 'ul.links', users));
 }
