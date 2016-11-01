@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>        
+        <ul class="content"> </ul>
+        <script type="text/javascript">            
+            
+             function makeRequest(url) {
+            
+                var promise = new Promise( httpPromise );
+                
+                function httpPromise(resolve, reject) {
+                    var httpRequest = new XMLHttpRequest();
+
+                     if ( !httpRequest ) {
+                       reject('Giving up :( Cannot create an XMLHTTP instance');
+                     }
+                     
+                     httpRequest.open('GET', url);
+                     httpRequest.send();
+                     
+                     httpRequest.addEventListener('load', httpResolve.bind(httpRequest));
+                     httpRequest.addEventListener('error', httpReject.bind(httpRequest));
+                     
+                     function httpResolve() {                        
+                        if ( this.status >= 200 && this.status < 300 ) {
+                            // Performs the function "resolve" when this.status is equal to 2xx
+                            resolve(JSON.parse(this.response));
+                        } else {
+                            // Performs the function "reject" when this.status is different than 2xx
+                            reject(this.statusText);
+                        }                          
+                     }
+                     
+                     function httpReject()
+                     {
+                         reject(this.statusText);
+                     }
+                }        
+                // Return the promise
+                return promise;
+            }
+                        
+            var callback = {
+              success: function(data) {
+                  displayContent(data);
+                console.log(1, 'success', data);
+              },
+              error: function(data) {
+                console.log(2, 'error', data);
+              }
+            };
+    makeRequest('http://localhost:3000/todo').then(callback.success, callback.error);
+            
+ 
+
+
+function displayContent(data)
+{    
+     
+    var dom = document.querySelector('ul.content');
+    var docfrag = document.createDocumentFragment();
+
+    for (var p = 0; p<data.length;p++)
+            {                 
+                var li = document.createElement("li");            
+                li.textContent = data.title[p]; 
+                docfrag.appendChild(li);
+            }
+
+            dom.appendChild(docfrag);
+    /* remove any child elements */
+    while (dom.firstChild)
+        {
+            dom.removeChild(dom.firstChild);
+        }   
+        
+    docfrag.appendChild( createParagraphElement('Title', ' ' + data.title) );
+    
+    
+    var completed = createParagraphElement('Completed: ', data.completed);
+    completed.setAttribute('class', 'link');
+    completed.addEventListener('click', function(){ data.completed = !data.completed;displayContent(data);});
+    docfrag.appendChild( completed );
+    dom.appendChild(docfrag);
+     
+    
+    function createParagraphElement(label, text) {
+                var pTag = document.createElement('p'),
+                    strongTag = document.createElement('strong'),
+                    strongText = document.createTextNode(label),
+                    pText = document.createTextNode(text);
+          
+                    strongTag.appendChild(strongText);
+                    pTag.appendChild(strongTag);  
+                    pTag.appendChild(pText);  
+                    return pTag;
+            }
+        }
+        </script>
+    </body>
+</html>
