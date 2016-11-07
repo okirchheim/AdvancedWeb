@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>        
-        <ul class="content"> </ul>
+        <p class="content"> </p>
         <script type="text/javascript">            
             
              function makeRequest(url) {
@@ -55,39 +55,20 @@
               }
             };
     makeRequest('http://localhost:3000/todo').then(callback.success, callback.error);
-            
- 
-
 
 function displayContent(data)
 {    
      
-    var dom = document.querySelector('ul.content');
+    var dom = document.querySelector('p.content');
     var docfrag = document.createDocumentFragment();
 
-    for (var p = 0; p<data.length;p++)
+    for (var p = 0; p<data.users.length;p++)
             {                 
-                var li = document.createElement("li");            
-                li.textContent = data.title[p]; 
-                docfrag.appendChild(li);
+                docfrag.appendChild( createParagraphElement('Title', ' ' + data.users[p].title) );
+                console.log(data.users[p].title);
             }
 
-            dom.appendChild(docfrag);
-    /* remove any child elements */
-    while (dom.firstChild)
-        {
-            dom.removeChild(dom.firstChild);
-        }   
-        
-    docfrag.appendChild( createParagraphElement('Title', ' ' + data.title) );
-    
-    
-    var completed = createParagraphElement('Completed: ', data.completed);
-    completed.setAttribute('class', 'link');
-    completed.addEventListener('click', function(){ data.completed = !data.completed;displayContent(data);});
-    docfrag.appendChild( completed );
-    dom.appendChild(docfrag);
-     
+    dom.appendChild(docfrag);     
     
     function createParagraphElement(label, text) {
                 var pTag = document.createElement('p'),
