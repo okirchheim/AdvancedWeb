@@ -1,20 +1,16 @@
 var mongoose = require('mongoose');
 
 var reviewSchema = new mongoose.Schema({
-    author: String,
-    rating: {
-        type: Number,
-        required: true,
-        min: 0,
-        max: 5
-    },
-    reviewText: String,
-    createdOn: {
-        type: Date,
-        "default": Date.now
-    }
+    firstName: String,
+    lastName: String,
+    department: String,
+    jobTitle: String,
+    salary: String,
+    startDate:
+     {
+        type: Date        
+     }
 });
-
 
 var Review = mongoose.model('Review', reviewSchema);
 
