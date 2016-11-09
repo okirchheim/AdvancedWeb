@@ -8,23 +8,27 @@ block content
     table(border="1")
         thead   
             tr
-                th author
-                th rating
-                th reviewText
-                th createdOn
-                th
-                th
+                th First Name
+                th Last Name
+                th Department
+                th Job Title
+                th Salary
+                th Start Date
         tbody
         - each stuff in results
             tr
                 td 
-                    = stuff.author
+                    = stuff.firstName
                 td 
-                    = stuff.rating
+                    = stuff.lastName
                 td 
-                    = stuff.reviewText
+                    = stuff.department
                 td 
-                    =stuff.createdOn.toDateString()
+                    = stuff.jobTitle
+                td 
+                    = stuff.salary
+                td 
+                    =stuff.startDate.toDateString()
                 td
                     a(href="../update/#{stuff._id}") Update
                 td

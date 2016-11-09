@@ -16,9 +16,12 @@ module.exports.home = function(req, res){
         console.log(req.body);
         
         Review.create({
-          author: req.body.name,
-          rating: req.body.rating,
-          reviewText: req.body.review
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          department: req.body.department,
+          jobTitle: req.body.jobTitle,
+          salary: req.body.salary,
+          startDate: req.body.startDate
         },function (err) {           
            // saved!
            successCB();
