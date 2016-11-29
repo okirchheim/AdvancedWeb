@@ -33,7 +33,6 @@ app.use(function(reg, res, next){
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');   
     next();
 });
-
 app.use('/api/v1', routesApi);
 
 // catch 404 and forward to error handler
@@ -42,7 +41,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
 // error handlers
 
 // development error handler
@@ -58,7 +56,6 @@ if (app.get('env') === 'development') {
         });
     });
 }
-
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
@@ -70,6 +67,5 @@ app.use(function(err, req, res, next) {
         }                    
     });
 });
-
 
 module.exports = app;

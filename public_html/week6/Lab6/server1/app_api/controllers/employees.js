@@ -1,16 +1,14 @@
 var mongoose = require('mongoose');
 var Employee = mongoose.model('Employee');
 
-
 function sendJSONresponse(res, status, content) {
     res.status(status);
     res.json(content);
 };
 
-
 module.exports.employeesReadAll = function(req, res) {
         
-      console.log('Getting all reviews');
+      console.log('Getting all employees');
     Employee
      .find()
      .exec(function(err, results){
@@ -19,15 +17,13 @@ module.exports.employeesReadAll = function(req, res) {
           } else {
               sendJSONresponse(res, 200, results);
           }
-     });
-
-    
+     });    
 };
 
 module.exports.employeesReadOne = function(req, res) {
     
      if (req.params && req.params.employeesid) {
-      console.log('Getting single employees with id =', req.params.employeesid );
+      console.log('Getting single employee with id =', req.params.employeesid );
       Employee
       .findById(req.params.employeesid)
       .exec(function(err, results){
@@ -88,9 +84,9 @@ module.exports.employeesUpdateOne = function(req, res) {
   Employee
     .findById(req.params.employeesid)
     .exec( function(err, employeesData) {
-        if (!employeeData) {
+        if (!employeesData) {
           sendJSONresponse(res, 404, {
-            "message": "Employeesid not found"
+            "message": "Employees id not found"
           });
           return;
         } else if (err) {
