@@ -57,7 +57,7 @@ module.exports.employeesCreate = function(req, res) {
         department: req.body.department,
         jobTitle: req.body.jobTitle,
         salary: req.body.salary,
-        startDate: req.body.date,
+        startDate: req.body.startDate,
         employeesText: req.body.employeesText
     }, function(err, dataSaved) {
         if (err) {
