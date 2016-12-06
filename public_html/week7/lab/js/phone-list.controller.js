@@ -1,3 +1,7 @@
+
+//Iidentify the controller and configuration information used to configure what will be injected.
+//Also gather and pass array of information to be used
+
 (function () {
     
     'use strict';

@@ -1,3 +1,6 @@
+//Iidentify the controller and configuration information used to configure what will be injected.
+//Also pass Id to find sigle item
+
 (function()
 { 
     'use strict';

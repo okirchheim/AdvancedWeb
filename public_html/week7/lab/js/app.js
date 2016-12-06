@@ -1,5 +1,6 @@
-// add ng-route to use later
 
+// this app page is used to link html pages to controllers
+// Ive made a function to link pages to their controller and then have anjular inject into the config property. 
 (function() {
     'use strict';
     angular
