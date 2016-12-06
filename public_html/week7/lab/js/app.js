@@ -15,14 +15,14 @@ function config($routeProvider)
                 templateUrl: 'js/phone-list.template.html',
                 controller: 'PhoneListController',
                 controllerAs: 'vm'
-    }).
-            when('/phone/:phoneId', {
+            }).
+            when('/phones/:phoneId', {
                 templateUrl: 'js/phone-detail.template.html',
                 controller: 'PhoneDetailController',
                 controllerAs: 'vm'
-    }).
+            }).
             otherwise({
                 redirectTo:'/'
-    });
+                });
 }
 })();

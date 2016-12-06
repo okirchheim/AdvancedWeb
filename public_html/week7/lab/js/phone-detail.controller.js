@@ -1,23 +1,26 @@
-(function () {
-    
+(function()
+{ 
     'use strict';
     angular
-            .module('app')
-            .controller('PhoneDetailController', PhoneDetailController);
+        .module('app')
+        .controller('PhoneDetailController', PhoneDetailController);
     
-    PhoneDetailController.$inject=['$routeParams'];
+    PhoneDetailController.$inject=['$routeParams','PhonesService'];
     
-    function PhoneDetailController($routeParams){
-        var vm = this;
-        
-        vm.phone = [];
-        var id = $routeParams.phoneId; 
-        
-        activate();
-        
+    function PhoneDetailController($routeParams, PhonesService)
+    {
+        var vm = this;        
+        vm.phone = {};
+        var id = $routeParams.phoneId;         
+        activate();        
         ////////////////////
-        
-        
-        function activate(){}
+                
+        function activate()
+        {           
+            PhonesService.findPhone(id).then(function(response)
+            {
+                vm.phone = response;
+            });
+        }
     }
 })();
