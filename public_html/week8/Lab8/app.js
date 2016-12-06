@@ -27,9 +27,11 @@ var appClientFiles = [
   'app_client/employee/employee.service.js',
   'app_client/employee/employee-home.controller.js',
   'app_client/employee/employee-create.controller.js',
-  'app_client/employee/employee-update.controller.js' 
+  'app_client/employee/employee-update.controller.js'
+  
+  
 ];
-var uglified = uglifyJs.minify(appClientFiles, { compress : true });
+var uglified = uglifyJs.minify(appClientFiles, { compress : false });
 
 fs.writeFile('public/lib/employee.min.js', uglified.code, function (err){
     if(err) {
@@ -38,11 +40,6 @@ fs.writeFile('public/lib/employee.min.js', uglified.code, function (err){
         console.log("Script generated and saved:", 'employee.min.js');
     }
 });
-
-
-
-
-
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));

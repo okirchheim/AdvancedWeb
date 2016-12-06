@@ -1,29 +1,29 @@
 (function() {
 
-    /* we have our service handler here to access the reviews API*/
+    /* we have our service handler here to access the Employees API*/
     
     'use strict';
     angular
-        .module('app.review')
-        .factory('ReviewService', ReviewService);
+        .module('app.employee')
+        .factory('EmployeeService', EmployeeService);
 
-    ReviewService.$inject = ['$http', 'REQUEST'];
+    EmployeeService.$inject = ['$http', 'REQUEST'];
 
-    function ReviewService($http, REQUEST) {
+    function EmployeeService($http, REQUEST) {
 
-        var url = REQUEST.Reviews;
+        var url = REQUEST.Employees;
         var service = {
-            'getReviews' : getReviews,
-            'getReview' : getReview,
-            'deleteReview' : deleteReview,
-            'addReview' : addReview,
-            'updateReview' : updateReview
+            'getEmployees' : getEmployees,
+            'getEmployee' : getEmployee,
+            'deleteEmployee' : deleteEmployee,
+            'addEmployee' : addEmployee,
+            'updateEmployee' : updateEmployee
         };
         return service;
 
         ////////////
 
-        function getReviews() {
+        function getEmployees() {
             return $http.get(url)
                     .then(getComplete, getFailed);                    
 
@@ -36,7 +36,7 @@
             }
         }
         
-         function getReview(_id) {
+         function getEmployee(_id) {
             var oneUrl = url + '/' + _id;
             return $http.get(oneUrl)
                     .then(getComplete, getFailed);                    
@@ -50,7 +50,7 @@
             }
         }
         
-        function deleteReview(_id) {
+        function deleteEmployee(_id) {
             var delUrl = url + '/' + _id;
             
             return $http.delete(delUrl)
@@ -66,31 +66,31 @@
         }
         
         
-        function addReview(data) {            
+        function addEmployee(data) {            
             return $http.post(url, data)
                     .then(getComplete, getFailed);                    
 
             function getComplete(response) { 
-                return 'Review Added';
+                return 'Employee Added';
             }
 
             function getFailed(error) {
-                return 'Review Add Failed';
+                return 'Employee Add Failed';
             }
         }
         
-        function updateReview(_id, data) {
+        function updateEmployee(_id, data) {
             var updateUrl = url + '/' + _id;
             
             return $http.put(updateUrl, data)
                     .then(getComplete, getFailed);                    
 
             function getComplete(response) { 
-                return 'Review Updated';
+                return 'Employee Updated';
             }
 
             function getFailed(error) {
-                return 'Review Update Failed';
+                return 'Employee Update Failed';
             }
         }
         
