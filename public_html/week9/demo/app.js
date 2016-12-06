@@ -48,11 +48,6 @@ fs.writeFile('public/lib/review.min.js', uglified.code, function (err){
     }
 });
 
-
-
-
-
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
