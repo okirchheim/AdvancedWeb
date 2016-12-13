@@ -13,7 +13,6 @@ mongoose.connection.on('connected', function() {
 });
 mongoose.connection.on('error', function(err) {
     console.log('Mongoose connection error: ' + err);
-     process.exit(0);
 });
 mongoose.connection.on('disconnected', function() {
     console.log('Mongoose disconnected');
@@ -46,6 +45,5 @@ process.on('SIGTERM', function() {
     });
 });
 
-process.on('exit', function(code) {
-  console.log('About to exit with code: ', code);
-});
+// BRING IN YOUR SCHEMAS & MODELS
+require('./Product');

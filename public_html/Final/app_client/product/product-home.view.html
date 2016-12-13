@@ -1,0 +1,32 @@
+<h1>Product Table</h1>
+
+<div class="content">
+    
+    <h3>Search</h3>
+    <!-- https://docs.angularjs.org/api/ng/filter/filter -->
+    <input ng-model="searchText">
+    <br />
+    <br /> 
+    <p ng-class="{'msg' : vm.message.length}">{{vm.message}}</p>
+    <p><a href="#/add/">Add New Product</a></p>
+    <table class="gridtable">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Description</th>                
+                <th>Product Price</th>                
+                
+            </tr>
+        </thead>    
+
+        <tr ng-repeat="productsData in vm.products | filter:searchText">
+            <td>{{productsData.Name}}</td>                  
+            <td>{{productsData.Description}}</td>
+            <td>{{productsData.Price}}</td>                  
+                        
+            <td><a ng-href="#/update/{{productsData._id}}">Update</a></td>
+            <td><button ng-click="vm.deleteProduct(productsData._id)">Delete</button></td>
+        </tr>
+    </table>
+       
+</div>
